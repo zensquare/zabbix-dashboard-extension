@@ -1,0 +1,8 @@
+[cb_eventlog]
+enabled=0
+class=DBEventLog
+title=Central Event Log Stats
+source=dbeventlog.inc.php
+server=127.0.0.1:3306
+user=zabbix
+password='password'

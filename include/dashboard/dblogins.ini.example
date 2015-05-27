@@ -1,0 +1,9 @@
+[cb_logins]
+enabled=0
+class=DBLogin
+title=User logins
+source=dblogins.inc.php
+refreshable=1
+server=127.0.0.1:3306
+user=zabbix
+password='password'

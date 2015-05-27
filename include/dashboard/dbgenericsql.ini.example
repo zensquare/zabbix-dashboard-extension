@@ -1,0 +1,15 @@
+[cb_top10_ping]
+class=DBGenericSQL
+title=Highest Ping Response
+source=dbgenericsql.inc.php
+sql="SELECT hs.host, CONCAT_WS(' ',CAST(hl.value AS DECIMAL(65,4)), i.units) as lastvalue, FROM_UNIXTIME(hl.clock) as updated 
+        FROM items i 
+        JOIN history_latest AS hl ON hl.itemid = i.itemid
+        LEFT JOIN hosts hs ON i.hostid = hs.hostid
+        WHERE i.key_ = 'icmppingsec'
+        AND hl.value IS NOT NULL 
+        ORDER BY CAST(hl.value AS DECIMAL(65,4)) DESC LIMIT 10"
+columns[]='{"value":"host","name":"host","class":"host"}'
+columns[]=lastvalue
+columns[]=updated
+row_class='{"critical":"lastvalue=0.5","warning":"lastvalue>0.3&&lastvalue<0.5"}'

@@ -1,0 +1,7 @@
+[cb_emails]
+enabled=0
+title=Email Monitor
+class=DBEmailMonitor
+source=dbemailmonitor.inc.php
+refreshable=1
+refreshrate=600
