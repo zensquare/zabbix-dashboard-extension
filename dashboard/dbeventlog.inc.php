@@ -63,7 +63,7 @@ class DBEventLog extends DBBlock {
         
         foreach ($systems as $systemName => $eventData) {
             
-            $systemData = array(new CLink($systemName,'eventlog/viewer.php?server='.$systemName));
+            $systemData = array(new CLink($systemName,'/zabbix/eventlog.php?server='.$systemName));
             foreach ($headers as $value) {
                 if(isset($eventData[$value])){
                     $systemData[] = _($eventData[$value]);

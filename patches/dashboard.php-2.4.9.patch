@@ -4,7 +4,7 @@
  
  require_once dirname(__FILE__).'/include/page_header.php';
  
-+require_once dirname(__FILE__).'/include/dashboard/hook.php';
++require_once dirname(__FILE__).'/dashboard/hook.php';
 +$custom_blocks = new CustomDashboard();
 +$custom_blocks->addCss($page['type']);
 +

@@ -20,7 +20,7 @@ $CSV_EXPORT = false;
 $page['title'] = _('Email Monitoring Log');
 $page['file'] = 'emailbrowser.php';
 $page['hist_arg'] = array('groupid', 'hostid');
-$page['scripts'] = array('class.calendar.js', 'gtlc.js','email.js');
+$page['scripts'] = array('class.calendar.js', 'gtlc.js');
 $page['type'] = detect_page_type(PAGE_TYPE_HTML);
 
 //if (PAGE_TYPE_HTML == $page['type']) {
@@ -29,6 +29,7 @@ $page['type'] = detect_page_type(PAGE_TYPE_HTML);
 
 
 require_once dirname(__FILE__) . '/include/page_header.php';
+echo '<script type="text/javascript" src="emailmonitor/email.js"></script>';
 
 /*
  * Ajax
@@ -47,7 +48,7 @@ if (isset($_REQUEST['favobj'])) {
 
 
 if (isset($_REQUEST['period'])) {
-    $_REQUEST['period'] = get_request('period', 63072000);
+    $_REQUEST['period'] = getRequest('period', 63072000);
     CProfile::update('web.emaillog.period', $_REQUEST['period'], PROFILE_TYPE_INT);
 } else {
     $_REQUEST['period'] = 63072000;//CProfile::get('web.emaillog.period');
@@ -55,7 +56,7 @@ if (isset($_REQUEST['period'])) {
     $d = new DateTime();
     $d->sub(new DateInterval('P1Y'));   
 if (isset($_REQUEST['stime'])) {
-    $_REQUEST['stime'] = get_request('stime', $d->format('YmdHis'));
+    $_REQUEST['stime'] = getRequest('stime', $d->format('YmdHis'));
     CProfile::update('web.emaillog.stime', $_REQUEST['stime'], PROFILE_TYPE_INT);
 } else {
     $_REQUEST['stime'] = $d->format('YmdHis');//CProfile::get('web.emaillog.stime');
@@ -101,10 +102,10 @@ $eventsWidget->addPageHeader(
         )
 );
 
-$r_form = new CForm('get', 'emaillog.php');
+$r_form = new CForm('get', 'emailbrowser.php');
 $r_form->addVar('fullscreen', $_REQUEST['fullscreen']);
-$r_form->addVar('stime', get_request('stime'));
-$r_form->addVar('period', get_request('period'));
+$r_form->addVar('stime', getRequest('stime'));
+$r_form->addVar('period', getRequest('period'));
 $r_form->addVar('triggerid', 0);
 
 

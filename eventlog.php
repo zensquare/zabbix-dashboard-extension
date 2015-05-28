@@ -1,10 +1,23 @@
 <?php
 
 /*
- * This page shows data for the central event logging - see the readme for how
- * to set it up
- *  
- */
+ * * Zabbix
+ * * Copyright (C) 2001-2014 Zabbix SIA
+ * *
+ * * This program is free software; you can redistribute it and/or modify
+ * * it under the terms of the GNU General Public License as published by
+ * * the Free Software Foundation; either version 2 of the License, or
+ * * (at your option) any later version.
+ * *
+ * * This program is distributed in the hope that it will be useful,
+ * * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * * GNU General Public License for more details.
+ * *
+ * * You should have received a copy of the GNU General Public License
+ * * along with this program; if not, write to the Free Software
+ * * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * */
 
 
 require_once dirname(__FILE__) . '/include/config.inc.php';
@@ -14,7 +27,6 @@ require_once dirname(__FILE__) . '/include/actions.inc.php';
 require_once dirname(__FILE__) . '/include/discovery.inc.php';
 require_once dirname(__FILE__) . '/include/html.inc.php';
 
-include('eventlog/config.php');
 
 $CSV_EXPORT = false;
 
@@ -99,9 +111,12 @@ $eventsWidget->addPageHeader(
 
 $r_form = new CForm('get', 'eventlog.php');
 $r_form->addVar('fullscreen', $_REQUEST['fullscreen']);
-$r_form->addVar('stime', get_request('stime'));
-$r_form->addVar('period', get_request('period'));
+$r_form->addVar('stime', getRequest('stime'));
+$r_form->addVar('period', getRequest('period'));
 $r_form->addVar('triggerid', 0);
+
+
+$db = mysql_connect("192.168.211.7", "zabbix", "asmd213)A)SDM@**@@");
 
 
 $sql = "SELECT host FROM logs.logs GROUP BY host;";
@@ -125,7 +140,7 @@ while ($row = mysql_fetch_assoc($results)) {
 $r_form->addItem(array(
     SPACE . _('Server') . SPACE,
     new CComboBox('server', $selected_server, 'javascript: submit();', $servers),
-    SPACE . _('Level') . SPACE,
+    SPACE . _('Server') . SPACE,
     new CComboBox('priority', $selectedPriority, 'javascript: submit();', $level)
 ));
 // add host and group filters to the form
@@ -159,7 +174,7 @@ $table = new CTableInfo(_('No events found.'), 'tableinfo Eventlog');
 
 
 if (isset($_REQUEST['period'])) {
-    $_REQUEST['period'] = get_request('period', ZBX_PERIOD_DEFAULT);
+    $_REQUEST['period'] = getRequest('period', ZBX_PERIOD_DEFAULT);
     CProfile::update('web.eventlog.period', $_REQUEST['period'], PROFILE_TYPE_INT);
 } else {
     $_REQUEST['period'] = CProfile::get('web.eventlog.period');

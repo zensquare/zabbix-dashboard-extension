@@ -1,0 +1,75 @@
+
+
+.email-list {
+    width: 400px;
+}
+
+.email-subject {
+    font-weight: bold;
+}
+
+.email-from, .email-to {
+    color: #555;
+    display: block;
+    margin-right: 10px;
+}
+.email-from {
+    width: 240px;
+    overflow: hidden;
+}
+
+.email-from:before {
+    content: "From ";
+        color:#888;
+    
+}
+.email-to:before {
+    content: "To ";
+        color:#888;
+}
+
+.email-viewer {
+    background: #fff;
+    margin: 2px;
+}
+
+.email-browser {
+    width: 100%;
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.email-viewer .email-header {
+    background: #ced7df;
+    height: 50px;
+    border-radius: 2px;
+}
+
+.email-log td:first-of-type {
+    text-align: center;
+}
+
+.email-browser > tbody > tr > td {
+    vertical-align: top;
+}
+    
+.email-browser > tbody > tr > td:first-of-type {
+    width: 0%;
+}
+.email-browser > tbody > tr > td:last-of-type {
+    width: 100%;
+    background: #fff;
+}
+
+#email-body {
+    height:100%;
+    position: absolute;
+}
+
+tr.email-selected td {
+    background: #b9d5f2 !important;
+}
+
+.email-viewer .email-from, .email-viewer .email-to {
+    display: inline;
+}

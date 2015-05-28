@@ -16,13 +16,9 @@ class CustomDashboard {
                 $this->loadINI($file);
             }
         }
-//        $this->blockList["cb_eventlog"] = array('title'=>"Central Event Log Stats",'class'=>'DBEventLog','source'=>'dbeventlog.inc.php');
-//        $this->blockList["cb_logins"] = array('title'=>'User logins','class'=>'DBLoginBlock','source'=>'dbloginsblock.inc.php');
-//        $this->blockList["cb_emails"] = array('title'=>'Email Monitor','class'=>'DBEmailMonitor','source'=>'dbemailmonitor.inc.php');
     } 
     
     public function loadINI($file){
-//        echo "($file)";
         $newBlocks = parse_ini_file($file,true);
         foreach($newBlocks as $key => $newBlock){
             if(!isset($newBlock['enabled']) || $newBlock['enabled'] == 1){
@@ -122,7 +118,7 @@ class CustomDashboard {
         }
         foreach($cssFiles as $path => $foo){
             if($path[0] != "/"){
-                $path = 'include/dashboard/'.$path;
+                $path = 'dashboard/'.$path;
             }
             echo '<link rel="stylesheet" type="text/css" href="'.$path.'" />'."\n";
         }

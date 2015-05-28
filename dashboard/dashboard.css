@@ -1,0 +1,60 @@
+ 
+.dashboard > .w > table {
+    width: 100%;
+}
+
+#dashboard_wdgt {
+    padding-right: 5px;
+}
+
+#syssum_widget .tableinfo .header td {
+    width: 11%;
+}
+#syssum_widget .tableinfo .header td:first-child {
+    width: 34%;
+}
+
+#cb_eventlog_widget .tableinfo td,
+#hoststat_widget .tableinfo td,
+#syssum_widget .tableinfo td {
+    text-align: center;
+}
+#cb_eventlog_widget .tableinfo td:first-child,
+#hoststat_widget .tableinfo td:first-child,
+#syssum_widget .tableinfo td:first-child {
+    text-align: left;
+}
+
+
+#hoststat_widget .tableinfo .header td {
+    width: 20%;    
+    white-space: pre-line;
+}
+#hoststat_widget .tableinfo .header td:first-child {
+    width: 40%;
+}
+
+#cb_eventlog_widget .tableinfo .header td {
+    width: 15%;    
+}
+#cb_eventlog_widget .tableinfo .header td:first-child {
+    width: 40%;
+}
+
+table.Eventlog > tbody > tr > td,
+table.email-log > tbody > tr > td{
+    white-space: pre-line;
+}
+
+.el_time {
+    width: 10% !important;
+}
+.el_server, 
+.el_program, 
+.el_severity, 
+.el_tag {
+    width: 5%;
+}
+.el_msg {
+    width: 70%;
+}
