@@ -3,3 +3,4 @@ enabled=0
 class=DBWebSpider
 title="Web Monitoring (Spider)"
 source=dbwebspider.inc.php
+report_url='spider/report.php'

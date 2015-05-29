@@ -4,7 +4,14 @@ require_once dirname(__FILE__) . '/dbblock.inc.php';
 
 class DBWebSpider extends DBBlock {
 
-
+    protected $reportUrl = 'spider/report.php';
+    
+    public function init(){
+        if(!empty($this->config['report_url'])){
+            $this->reportUrl = $this->config['report_url'];
+        }
+    }
+    
     public function _getContent($refresh = false) { 
         $table = new CTableInfo(_('No web scenarios found.'));
 	$table->setHeader(array(
@@ -32,7 +39,7 @@ class DBWebSpider extends DBBlock {
             foreach ($deadlinks as $deadlink) {
                 $link_link = new CLink($deadlink['url']==""?"root":substr($deadlink['url'],0,50),($deadlink['url']==""||$deadlink['url'][0]=="/"?$row['url']:"").$deadlink['url']);
                 $link_link->setTarget("_blank");
-                $map_link  = new CLink("map","spider/report.php?pid=$deadlink[aid]");
+                $map_link  = new CLink("map",$this->reportUrl."?pid=$deadlink[aid]");
                 $map_link->setTarget("_blank");
                 $info_link = new CLink($deadlink["status"],"http://www.checkupdown.com/status/E$deadlink[status].html");
                 $info_link->setTarget("_blank");
@@ -41,7 +48,7 @@ class DBWebSpider extends DBBlock {
             }
             $link_link = new CLink($row['name'],$row['url']);
             $link_link->setTarget("_blank");
-            $map_link  = new CLink("map","spider/report.php?wid=$row[aid]");
+            $map_link  = new CLink("map",$this->reportUrl."?wid=$row[aid]");
             $map_link->setTarget("_blank");
             
             $table->addRow(array(
